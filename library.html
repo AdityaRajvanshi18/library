@@ -3,25 +3,59 @@
     <head>
         <title>Library</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto">
+
     </head>
     <body>
-        <div class = "input-container">
-            <div class="input-labels-container">
-                <div class="input-labels">Book Title</div>
-                <div class="input-labels">Author</div>
-                <div class="input-labels">Pages</div>
-                <div class="input-labels">Read?</div>
-            </div>
-            <div class="input-labels">
-                <input type="text" id="title">
-                <br>
-                <input type="text" id="author">
-                <br>
-                <input type="number" id="pages">
-                <br>
-                <input type="checkbox" id="read">
-                <br>
-                <button type="button" id="submit">Submit</button>
+        <div class="body-container">
+            <div class="header">Welcome to the Library</div>
+            <div class="body-grid-container">
+                <div class="book-shelf">
+                    <div class="book-labels-container">
+                        <div class="book-labels">Title</div>
+                        <div class="book-labels">Author</div>
+                        <div class="book-labels">Pages</div>
+                        <div class="book-labels">Read</div>
+                        <div class="book-labels">Delete</div>
+                    </div> 
+                </div>
+                <div class="input-column">
+                    <div class="input-container"> 
+                        <div class="add-book">Add a book!</div>
+                        <div class="input-labels-container">
+                            <div class="input-block">
+                                <div class="input-labels">Book Title</div>
+                                <div class="inputs">
+                                    <input type="text" id="title">
+                                </div>
+                            </div>
+                            <div class="input-block">
+                                <div class="input-labels">Author</div>
+                                <div class="inputs">
+                                    <input type="text" id="author">
+                                </div>
+                            </div>
+                            <div class="input-block">
+                                <div class="input-labels">Pages</div>
+                                <div class="inputs">
+                                    <input type="text" id="pages">
+                                </div>
+                            </div>
+                            </div>
+                            <div class="checkbox-box">
+                                <div class="input-labels">Have you read this book?</div>
+                                <div class="inputs-check">
+                                    <input type="checkbox" id="read">
+                                </div>
+                            </div>
+                            <div class="button-box" id="submit">
+                                <div class="button-submit" >Submit</div>
+                                <div class="button-clear" >Clear</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
