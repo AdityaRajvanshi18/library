@@ -55,7 +55,6 @@ function displayBooks(){
         bookRow.appendChild(bookPages);
         //READ
         const bookRead = document.createElement("div");
-        bookRead.id = "status";
         if(myLibrary[i].read === true){
             bookRead.textContent = "Yes";
         }
@@ -63,14 +62,25 @@ function displayBooks(){
             bookRead.textContent = "No";
         }
         bookRead.classList.add("book-entries");
+        bookRead.setAttribute("data-index", [i]);
         bookRow.appendChild(bookRead);
         //DELETE
         const bookDeleteContainer = document.createElement("div");
         bookDeleteContainer.classList.add("book-delete-container"); //so that i can center the square
+        
+        const imgDelete = document.createElement("img");
+        imgDelete.src = "trash.png";
+        imgDelete.setAttribute("data-index", [i]);
+
         const bookDelete = document.createElement("div");
         bookDelete.classList.add("book-delete");
+        //bookDelete.textContent = "x";
         bookDelete.setAttribute("data-index", [i]);
+        bookDelete.appendChild(imgDelete);
+
         bookDeleteContainer.appendChild(bookDelete);
+
+
         bookRow.appendChild(bookDeleteContainer);
 
     }
@@ -87,23 +97,27 @@ function clearLibrary(){
 }
 
 function changeStatus(item){
+    let index = item.originalTarget.attributes["1"].textContent;
+    console.log(index);
     if (this.textContent == "No"){
         this.textContent = "Yes";
+        myLibrary[index].read = true;
+        console.log(myLibrary);
     }
     else if(this.textContent == "Yes"){
         this.textContent = "No";
+        myLibrary[index].read = false;
+        console.log(myLibrary);
     }
+    
 }
 
 function deleteBook(item){
-    //get index
-    //go to myLibrary and remove the indexed item
-    let index = item.originalTarget.attributes["data-index"].textContent;
-    console.log("this is the index of clicked item", index);
+    let index = item.originalTarget.attributes["1"].textContent;
     let removed = myLibrary.splice(index, 1);
     console.log("library after delete", myLibrary);
     item.srcElement.parentNode.parentNode.remove(item);
-
+    displayBooks();
 }
 
 submit.addEventListener("click", addBookToLibrary);
