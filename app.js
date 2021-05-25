@@ -1,11 +1,3 @@
-const title = document.querySelector("[id=title]");
-const author = document.querySelector("[id=author]");
-const pages = document.querySelector("[id=pages]");
-const read = document.querySelector("[id=read]");
-const submit = document.querySelector(".button-submit");
-const clear = document.querySelector(".button-clear")
-
-
 let myLibrary = [];
 
 function Book( title, author, pages, read){
@@ -14,6 +6,22 @@ function Book( title, author, pages, read){
     this.pages = pages;
     this.read = read;
 }
+
+if (localStorage.getItem('books') === null) {
+    myLibrary = [];
+  } 
+else {
+    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
+    myLibrary = booksFromStorage;
+}
+
+const title = document.querySelector("[id=title]");
+const author = document.querySelector("[id=author]");
+const pages = document.querySelector("[id=pages]");
+const read = document.querySelector("[id=read]");
+const submit = document.querySelector(".button-submit");
+const clear = document.querySelector(".button-clear")
+
 
 function clearFields(){
     title.value = "";
@@ -32,8 +40,17 @@ function addBookToLibrary(){
 
 function displayBooks(){
     //clear library and then iterate through myLibrary and add items
+    localStorage.setItem('books', JSON.stringify(myLibrary));
     clearLibrary();
     const bookList = document.querySelector(".book-shelf");//going to append into this div
+    if (myLibrary.length == 0){
+        bookRow = document.createElement("div");
+        bookRow.classList.add("empty-row");
+        bookRow.textContent = "Your book shelf is empty, add a book by filling out the information on the right.";
+        bookList.appendChild(bookRow);
+        return;
+    }
+    clearLibrary();
     for(let i = 0; i <myLibrary.length; i++){
         bookRow = document.createElement("div");
         bookRow.classList.add("book-entries-container");
@@ -94,6 +111,7 @@ function displayBooks(){
 
 function clearLibrary(){
     document.querySelectorAll(".book-entries-container").forEach( e => e.parentNode.removeChild(e));
+    document.querySelectorAll(".empty-row").forEach( e => e.parentNode.removeChild(e));
 }
 
 function changeStatus(item){
@@ -124,10 +142,10 @@ submit.addEventListener("click", addBookToLibrary);
 clear.addEventListener("click", clearFields);
 
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 255, false);
+/* const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 255, false);
 myLibrary.push(theHobbit);
 const circe = new Book("Circe", "Madeline Miller", 416, true);
-myLibrary.push(circe);
+myLibrary.push(circe); */
 displayBooks();
 
 console.log("On initialisation", myLibrary)

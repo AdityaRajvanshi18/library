@@ -14,6 +14,16 @@ body{
     display: flex;
     justify-content: center;
     font-size: 2rem;
+    color: var(--blue);
+}
+
+.subtext{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 .body-grid-container{
@@ -54,6 +64,7 @@ input{
     width: auto;
     height:1.5rem;
     font-size: 1rem;
+    margin-left: ;
 }
 
 .input-labels{
@@ -130,6 +141,13 @@ input{
 .book-labels{
     color: white;
     font-weight: bold;
+}
+
+.empty-row{
+    color: #4f687e;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 
 .book-entries-container{
